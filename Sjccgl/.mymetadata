@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="Sjccgl"
+  id="myeclipse.1417772845477"
+  context-root="/Sjccgl"
+  j2ee-spec="5.0"
+  archive="Sjccgl.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="sjccgl" extends="struts-default,json-default">  	
+
+    	<!-- 查询事项 -->
+    	<action name="queryMattersType" class="com.wonders.main.action.CheckMattersTypeAction" method="queryMattersType"/>
+    	
+    	<!-- 添加事项 -->
+    	<action name="addMattersType" class="com.wonders.main.action.CheckMattersTypeAction" method="addMattersType"/>
+		
+		<!-- 修改事项 -->
+		<action name="editeMattersType" class="com.wonders.main.action.CheckMattersTypeAction" method="editeMattersType"/>
+    	
+    	<!-- 删除事项 -->
+		<action name="delMattersType" class="com.wonders.main.action.CheckMattersTypeAction" method="delMattersType"/>
+    	
+    	<!-- 事项表导入 -->
+		<action name="importMattersType" class="com.wonders.main.action.CheckMattersTypeAction" method="importMattersType"/>
+    	
+    	<!-- 事项表导出 -->
+		<action name="exportMattersType" class="com.wonders.main.action.CheckMattersTypeAction" method="exportMattersType">
+			 <result name="success" type="stream">  
+                <param name="contentType">application/x-xls;charset=ISO8859-1</param>  
+                <param name="inputName">inputStream</param>  
+                <param name="contentDisposition">attachment;filename=${excelFileFileName}</param>  
+                <param name="bufferSize">8096</param>
+            </result>  
+		</action>
+    	
+    	<!-- 查询所有用户 -->
+    	<action name="getAllUser" class="com.wonders.main.action.UserAction" method="getAllUser"/>
+    	
+    	<!-- 查询任务-->
+    	<action name="queryTask" class="com.wonders.main.action.TaskAction" method="queryTask"/>
+    	
+    	<!-- 非定向抽查-->
+    	<action name="saveTask" class="com.wonders.main.action.TaskAction" method="saveTask"/>
+    	
+    	<!-- 任务表导出 -->
+    	<action name="exportTask" class="com.wonders.main.action.TaskAction" method="exportTask">
+    		<result name="success" type="stream">  
+                <param name="contentType">application/x-xls;charset=ISO8859-1</param>  
+                <param name="inputName">inputStream</param>  
+                <param name="contentDisposition">attachment;filename=${excelFileFileName}</param>  
+                <param name="bufferSize">8096</param>
+            </result>  
+    	</action>
+    	
+    	<!-- 定向抽查 -->
+    	<action name="saveDxTask" class="com.wonders.main.action.TaskAction" method="saveDxTask"/>
+    	<!-- 查询任务详细-->
+    	<action name="queryTaskDetail" class="com.wonders.main.action.TaskAction" method="queryTaskDetail"/>
+    	<!-- 查询任务删除-->
+    	<action name="deleteTask" class="com.wonders.main.action.TaskAction" method="deleteTask"/>
+    	<!-- 市场主体信息查询 -->
+    	<action name="queryDcgtList" class="com.wonders.main.action.DcgtInfoAction" method="queryDcgtList"/>
+    	
+    	<!-- 市场主体信息保存 -->
+    	<action name="saveDcgtInfo" class="com.wonders.main.action.DcgtInfoAction" method="saveDcgtInfo"/>
+    	
+    	<!-- 下拉列表选择 -->
+    	<action name="optionType" class="com.wonders.main.action.CheckMattersTypeAction" method="optionType"/>
+    	
+    	<!-- 市场主体信息修改 -->
+    	<action name="updateDcgtInfo" class="com.wonders.main.action.DcgtInfoAction" method="updateDcgt"/>
+    	
+    	<!-- 市场主体信息删除 -->
+    	<action name="deleteDcgtInfo" class="com.wonders.main.action.DcgtInfoAction" method="deleteDcgt"/>
+    	
+    	<!--  市场主体信息导入 -->
+		<action name="importDcgtInfo" class="com.wonders.main.action.DcgtInfoAction" method="importDcgtInfo"/>
+    	
+    	<!--  市场主体信息导出 -->
+		<action name="exportDcgtInfo" class="com.wonders.main.action.DcgtInfoAction" method="exportDcgtInfo">
+    	   <result name="success" type="stream">  
+                <param name="contentType">application/x-xls;charset=ISO8859-1</param>  
+                <param name="inputName">inputStream</param>  
+                <param name="contentDisposition">attachment;filename=${excelFileFileName}</param>  
+                <param name="bufferSize">8096</param>
+            </result> 
+    	</action>
+
+    	<!-- 个体调查列表查询 -->
+    	<action name="queryCompanyInfo" class="com.wonders.main.action.DcgtInfoAction" method="queryCompanyInfo"/>
+ 
+    	
+    	<!-- 执法人员查询 -->
+    	<action name="queryUserList" class="userAction" method="queryUserList"/>
+    	
+    	<!-- 执法人员保存 -->
+    	<action name="saveUser" class="userAction" method="saveUser"/>
+    	
+    	<!-- 执法人员修改 -->
+    	<action name="updateUser" class="userAction" method="updateUser"/>
+    	
+    	<!-- 执法人员删除 -->
+    	<action name="deleteUser" class="userAction" method="deleteUser"/>
+    	
+    	<!-- 执法人员导入 -->
+		<action name="importUser" class="userAction" method="importUser"/>
+		
+    	<!--  执法人员导出 -->
+		<action name="exportUser" class="userAction" method="exportUser">
+    	   <result name="success" type="stream">  
+                <param name="contentType">application/x-xls;charset=ISO8859-1</param>  
+                <param name="inputName">inputStream</param>  
+                <param name="contentDisposition">attachment;filename=${excelFileFileName}</param>  
+                <param name="bufferSize">8096</param>
+            </result> 
+    	</action>
+    	<!-- 查询统计 -->
+		<action name="queryTaskDcgt" class="taskDcgtAction" method="queryTaskDcgt"/>
+		
+		<!-- 抽查结果归档详情 -->
+		<action name="queryDcgtResult" class="taskDcgtResultAction" method="queryDcgtResult"/>
+		
+		<!--抽查结果归档详情(详细)  -->
+		<action name="queryDetailDcgtResult" class="taskDcgtResultAction" method="queryDetailDcgtResult"/>
+		
+		<!-- 抽查任务结果录入 -->
+    	<action name="saveOrUpdateTaskDcgtResult" class="taskDcgtResultAction" method="saveOrUpdateTaskDcgtResult"/>
+    </package>
+</struts>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			http://www.springframework.org/schema/context 
+			http://www.springframework.org/schema/context/spring-context-2.5.xsd
+			http://www.springframework.org/schema/aop 
+			http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+			http://www.springframework.org/schema/tx 
+			http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+			
+	<!-- dao -->
+	<bean id="userDao" class="com.wonders.auth.dao.impl.UserDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="resourceDao" class="com.wonders.auth.dao.impl.ResourceDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+	<bean id="baseDao" class="com.wonders.main.dao.impl.BaseDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+	<bean id="tbAuthResourceDao" class="com.wonders.main.dao.impl.TbAuthResourceDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="dcgtInfoDao" class="com.wonders.main.dao.impl.DcgtInfoDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="checkMattersTypeDao" class="com.wonders.main.dao.impl.CheckMattersTypeDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="taskDao" class="com.wonders.main.dao.impl.TaskDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="taskDcgtDao" class="com.wonders.main.dao.impl.TaskDcgtDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="taskDcgtResultDao" class="com.wonders.main.dao.impl.TaskDcgtResultDaoImpl">
+    	 <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <!-- services -->
+    <bean id="userService" class="com.wonders.auth.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	
+    <bean id="resourceService" class="com.wonders.auth.service.impl.ResourceServiceImpl">
+		<property name="resourceDao" ref="resourceDao"></property>
+	</bean>
+	
+	<bean id="baseService" class="com.wonders.main.services.impl.BaseServiceImpl">
+        <property name="baseDao" ref="baseDao"/>
+    </bean>
+    	    
+    <bean id="tbAuthResourceService" class="com.wonders.main.services.impl.TbAuthResourceServiceImpl">
+        <property name="tbAuthResourceDao" ref="tbAuthResourceDao"/>
+        <property name="baseDao" ref="baseDao"/>
+    </bean>	
+    
+    <bean id="dcgtInfoService" class="com.wonders.main.services.impl.DcgtInfoServiceImpl">
+        <property name="dcgtInfoDao" ref="dcgtInfoDao"/>
+        <property name="checkMattersTypeDao" ref="checkMattersTypeDao"/>
+        <property name="baseDao" ref="baseDao"/>
+    </bean>	
+    
+    <bean id="checkMattersTypeService" class="com.wonders.main.services.impl.CheckMattersTypeServiceImpl">
+        <property name="checkMattersTypeDao" ref="checkMattersTypeDao"/>
+        <property name="baseDao" ref="baseDao"/>
+    </bean>	
+    
+    <bean id="taskService" class="com.wonders.main.services.impl.TaskServiceImpl">
+        <property name="taskDao" ref="taskDao"/>
+        <property name="taskDcgtDao" ref="taskDcgtDao"/>
+        <property name="checkMattersTypeDao" ref="checkMattersTypeDao"/>
+        <property name="taskDcgtResultDao" ref="taskDcgtResultDao"/>
+        <property name="dcgtInfoDao" ref="dcgtInfoDao"/>
+        <property name="baseDao" ref="baseDao"/>
+    </bean>	
+    
+    <bean id="taskDcgtService" class="com.wonders.main.services.impl.TaskDcgtServiceImpl">
+        <property name="taskDcgtDao" ref="taskDcgtDao"/>
+        <property name="taskDao" ref="taskDao"/>
+        <property name="baseDao" ref="baseDao"/>
+    </bean>	
+    
+    <bean id="taskDcgtResultService" class="com.wonders.main.services.impl.TaskDcgtResultServiceImpl">
+    	<property name="taskDcgtResultDao" ref="taskDcgtResultDao"/>
+    	<property name="taskDcgtDao" ref="taskDcgtDao"/>
+        <property name="baseDao" ref="baseDao"/>
+    </bean>
+    
+	<!-- action -->
+	<bean id="loginAction" class="com.wonders.auth.action.BaseLoginAction" scope="prototype">
+		<property name="userService" ref="userService"></property>
+		<property name="resourceService" ref="resourceService"/>
+	</bean>
+	
+	<bean id="tbAuthResourceAction" class="com.wonders.main.action.TbAuthResourceAction" scope="prototype" >
+		<property name="baseService" ref="baseService"/>
+		<property name="tbAuthResourceService" ref="tbAuthResourceService"/>
+	</bean>
+	<bean id="userAction" class="com.wonders.main.action.UserAction" scope="prototype">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="dcgtInfoAction" class="com.wonders.main.action.DcgtInfoAction" scope="prototype" >
+		<property name="baseService" ref="baseService"/>
+		<property name="dcgtInfoService" ref="dcgtInfoService"/>
+	</bean>
+	
+	<bean id="checkMattersTypeAction" class="com.wonders.main.action.CheckMattersTypeAction" scope="prototype" >
+		<property name="baseService" ref="baseService"/>
+		<property name="checkMattersTypeService" ref="checkMattersTypeService"/>
+	</bean>
+	
+	<bean id="taskAction" class="com.wonders.main.action.TaskAction" scope="prototype" >
+		<property name="baseService" ref="baseService"/>
+		
+		<property name="taskService" ref="taskService"/>
+		<property name="taskDcgtResultService" ref="taskDcgtResultService"/>
+	</bean>
+		
+	<bean id="taskDcgtAction" class="com.wonders.main.action.TaskDcgtAction" scope="prototype" >
+		<property name="taskDcgtService" ref="taskDcgtService"/>
+	</bean>
+	
+	<bean id="taskDcgtResultAction" class="com.wonders.main.action.TaskDcgtResultAction" scope="prototype" >
+		<property name="taskDcgtResultService" ref="taskDcgtResultService"/>
+	</bean>
+	
+  </beans>
